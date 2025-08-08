@@ -1,32 +1,38 @@
 import React from 'react'
+import './EditorTab.css'
 
 const EditorTab = ({setShowEditorModal}) => {
     return (
-        <div className='bg-white rounded-lg border border-[#D3DBDF] w-full sm:w-80 h-fit'>
-            <div className='flex items-center justify-between py-2 px-3'>
-                <div className='flex items-center gap-2'>
+        <div className='kds-editor-container'>
+            <div className='kds-editor-header'>
+                <div className='kds-editor-title-section'>
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341726/Frame_12_mbe4a0.png" alt="AI" />
-                    <h3 className='text-[16px] text-black font-semibold'>Improve with AI</h3>
+                    <h3 className='kds-editor-title'>Improve with AI</h3>
                 </div>
-                <div onClick={()=> setShowEditorModal(false)} className="cursor-pointer">
+                <div onClick={()=> setShowEditorModal(false)} className="kds-editor-close">
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
                 </div>
             </div>
-            <hr className="border-t border-[#D3DBDF] h-px" />
-            <div className='py-3 px-4'>
-                <div className='flex flex-col gap-2'>
-                    <label htmlFor="description" className="text-[14px] text-black">Description*</label>
-                    <div className='relative bg-[#E4E9EC] rounded-lg h-46'> <textarea name='description' className='p-2 text-black resize-none w-full text-[13px] h-36 border-none focus:border-none outline-none overflow-y-scroll placeholder:text-[13px]' placeholder='Describe the design in a sentence' />
-                        <div className='bg-white flex gap-2 px-2 py-1 rounded-lg absolute bottom-2 right-2'>
-                            <span className='text-[14px] text-black'>Prompt</span>
+            <hr className="kds-editor-divider" />
+            <div className='kds-editor-content'>
+                <div className='kds-editor-form'>
+                    <label htmlFor="description" className="kds-editor-label">Description*</label>
+                    <div className='kds-editor-textarea-container'>
+                        <textarea 
+                            name='description' 
+                            className='kds-editor-textarea' 
+                            placeholder='Describe the design in a sentence' 
+                        />
+                        <div className='kds-editor-prompt-badge'>
+                            <span className='kds-editor-prompt-text'>Prompt</span>
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749343021/Frame_12_1_jktiv7.png" alt="AI" />
                         </div>
                     </div>
-                    <div className='my-2 flex items-center gap-3'>
-                        <span className='px-5 py-1.5 text-black text-[13px] rounded-full bg-gray-100'>Color</span>
-                        <span className='px-5 py-1.5 text-[13px] rounded-full bg-gray-200 text-gray-600'>Arts</span>
+                    <div className='kds-editor-tags'>
+                        <span className='kds-editor-tag kds-active'>Color</span>
+                        <span className='kds-editor-tag kds-inactive'>Arts</span>
                     </div>
-                    <button className='disabled:bg-[#D7DEF4] text-white bg-blue-600 rounded-md py-2 disabled:text-[#AEBDEA] text-[14px]'>Generate</button>
+                    <button className='kds-editor-generate-btn'>Generate</button>
                 </div>
             </div>
         </div>

@@ -1,0 +1,126 @@
+/* EditTab Component Styles */
+
+.kds-edit-container {
+  background-color: #ffffff;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #D3DBDF;
+  width: 100%; /* w-full */
+  height: fit-content; /* h-fit */
+}
+
+@media (min-width: 640px) {
+  .kds-edit-container {
+    width: 20rem; /* w-80 */
+  }
+}
+
+.kds-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+}
+
+.kds-edit-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.kds-edit-title {
+  font-size: 16px; /* text-[16px] */
+  font-weight: 600; /* font-semibold */
+  color: #111827;
+}
+
+.kds-edit-close {
+  cursor: pointer;
+}
+
+.kds-edit-divider {
+  border-top: 1px solid #D3DBDF;
+  height: 1px;
+}
+
+.kds-edit-body {
+  padding: 1.5rem; /* py-6 px-6 */
+}
+
+.kds-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* gap-4 */
+}
+
+.kds-edit-subtitle {
+  font-size: 14px; /* text-[14px] */
+  font-weight: 500; /* font-medium */
+  color: #111827;
+}
+
+.kds-upload-label {
+  display: block;
+  background-color: #E4E9EC;
+  padding: 3rem 1rem; /* py-12 px-4 */
+  border-radius: 0.5rem; /* rounded-lg */
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.kds-upload-label:hover {
+  background-color: #d9e2e6; /* hover:bg-[#d9e2e6] */
+}
+
+.kds-hidden {
+  display: none;
+}
+
+.kds-upload-helper {
+  text-align: center;
+}
+
+.kds-upload-cta {
+  background-color: #3559C7;
+  color: white;
+  padding: 0.5rem 1.5rem; /* px-6 py-2 */
+  border-radius: 0.375rem; /* rounded-md */
+  display: inline-block;
+  margin-bottom: 0.75rem; /* mb-3 */
+  font-size: 0.875rem;
+}
+
+.kds-upload-note {
+  color: #6b7280; /* text-gray-500 */
+  font-size: 12px; /* text-[12px] */
+  line-height: 1.25rem;
+}
+
+.kds-upload-button {
+  width: 100%;
+  border-radius: 0.375rem; /* rounded-md */
+  padding: 0.75rem 0; /* py-3 */
+  font-size: 14px; /* text-[14px] */
+  font-weight: 500; /* font-medium */
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  background-color: #3559C7;
+  color: #ffffff;
+  border: none;
+}
+
+.kds-upload-button:hover:not(:disabled) {
+  background-color: #2a47a3; /* hover */
+}
+
+.kds-upload-button:disabled {
+  background-color: #E6E9F3;
+  color: #B8C5E8;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .kds-edit-body {
+    padding: 1rem;
+  }
+}

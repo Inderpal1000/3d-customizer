@@ -1,0 +1,159 @@
+/* 3D Customizer Styles with kds- prefix */
+
+/* Main container */
+.kds-main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Canvas container */
+.kds-canvas-container {
+  height: 100vh;
+  width: 60%;
+}
+
+/* Controls panel container */
+.kds-controls-container {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+/* Button styles */
+.kds-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.kds-btn-primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.kds-btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.kds-btn-danger {
+  background-color: #dc2626;
+  color: white;
+}
+
+.kds-btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+.kds-btn-full {
+  width: 100%;
+}
+
+.kds-btn-mt-2 {
+  margin-top: 0.5rem;
+}
+
+/* Loading overlay */
+.kds-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kds-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kds-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: kds-spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.kds-loading-text {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+/* Animation */
+@keyframes kds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .kds-canvas-container {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .kds-main {
+    flex-direction: column;
+  }
+  
+  .kds-canvas-container {
+    width: 100%;
+    height: 70vh;
+  }
+  
+  .kds-controls-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .kds-canvas-container {
+    height: 60vh;
+  }
+  
+  .kds-controls-container {
+    padding: 0 0.5rem;
+  }
+  
+  .kds-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kds-canvas-container {
+    height: 50vh;
+  }
+  
+  .kds-loading-text {
+    font-size: 1rem;
+  }
+  
+  .kds-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { use2D } from '../../context/2DContext';
 import { use3D } from '@/app/context/3DContext';
+import './AddTextTab.css';
 
 const AddTextTab = ({ handleAddCustomText, update3DText }) => {
     const {
@@ -13,25 +14,34 @@ const AddTextTab = ({ handleAddCustomText, update3DText }) => {
     } = use3D();
 
     return (
-        <div className='bg-white rounded-lg border border-[#D3DBDF] w-80 h-fit'>
-            <div className='flex items-center justify-between py-2 px-3'>
-                <div className='flex items-center gap-2'>
-                    <h3 className='text-[16px] text-black font-semibold'>Add text</h3>
+        <div className='kds-container'>
+            <div className='kds-header'>
+                <div className='kds-header-left'>
+                    <h3 className='kds-title'>Add text</h3>
                 </div>
-                <div className="cursor-pointer" onClick={() => setShowAddModal(false)}>
+                <div className="kds-close-button" onClick={() => setShowAddModal(false)}>
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
                 </div>
             </div>
             {
                 selectedProduct?.productType === "2D" && (
                     <>
-                        <hr className="border-t border-[#D3DBDF] h-px" />
-                        <div className='py-3 px-4'>
-                            <div className='flex flex-col gap-2'>
-                                <input type="text" value={customText}
-                                    onChange={(e) => setCustomText(e.target.value)} name="" id="" placeholder="Add Headline" className="border border-[#D3DBDF] text-black rounded-lg p-3 min-h-20 placeholder:font-semibold" />
+                        <hr className="kds-divider" />
+                        <div className='kds-content'>
+                            <div className='kds-input-container'>
+                                <textarea 
+                                    value={customText}
+                                    onChange={(e) => setCustomText(e.target.value)} 
+                                    placeholder="Add Headline" 
+                                    className="kds-text-input" 
+                                />
                             </div>
-                            <button onClick={handleAddCustomText} className={` rounded-md mt-3 py-3  w-full text-[16px] cursor-pointer ${customText.trim() !== "" ? "text-white bg-blue-600" : "bg-[#D7DEF4] text-[#AEBDEA]"}`}>Add text</button>
+                            <button 
+                                onClick={handleAddCustomText} 
+                                className={`kds-add-button ${customText.trim() !== "" ? "active" : "inactive"}`}
+                            >
+                                Add text
+                            </button>
                         </div>
                     </>
                 )
@@ -39,18 +49,22 @@ const AddTextTab = ({ handleAddCustomText, update3DText }) => {
             {
                 selectedProduct?.productType === "3D" && (
                     <>
-                        <hr className="border-t border-[#D3DBDF] h-px" />
-                        <div className='py-3 px-4'>
-                            <div className='flex flex-col gap-2'>
-                                <input
-                                    type="text"
+                        <hr className="kds-divider" />
+                        <div className='kds-content'>
+                            <div className='kds-input-container'>
+                                <textarea
                                     placeholder="Enter text"
                                     value={threeDtext}
                                     onChange={(e) => setthreeDText(e.target.value)}
-                                    className="border border-[#D3DBDF] text-black rounded-lg p-3 min-h-20 placeholder:font-semibold"
+                                    className="kds-text-input"
                                 />
                             </div>
-                            <button onClick={update3DText} className={` rounded-md mt-3 py-3  w-full text-[16px] cursor-pointer ${threeDtext.trim() !== "" ? "text-white bg-blue-600" : "bg-[#D7DEF4] text-[#AEBDEA]"}`}>Add text</button>
+                            <button 
+                                onClick={update3DText} 
+                                className={`kds-add-button ${threeDtext.trim() !== "" ? "active" : "inactive"}`}
+                            >
+                                Add text
+                            </button>
                         </div>
                     </>
                 )

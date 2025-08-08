@@ -1,0 +1,148 @@
+/* CustomColorSwatch Component Styles */
+
+.kds-color-container {
+  background-color: white;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #D3DBDF;
+  width: 18rem; /* w-72 */
+  height: fit-content; /* h-fit */
+  max-height: 460px; /* max-h-[460px] */
+  overflow-y: scroll;
+}
+
+.kds-color-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+}
+
+.kds-color-title-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+}
+
+.kds-color-title {
+  font-size: 16px; /* text-[16px] */
+  color: #000000; /* text-black */
+  font-weight: 600; /* font-semibold */
+}
+
+.kds-color-close {
+  cursor: pointer;
+}
+
+.kds-color-divider {
+  border-top: 1px solid #D3DBDF;
+  height: 1px; /* h-px */
+}
+
+.kds-color-content {
+  padding: 0.75rem; /* p-3 */
+  display: flex;
+  flex-direction: column; /* flex-col */
+  gap: 0.5rem; /* gap-2 */
+}
+
+.kds-used-colors-section h3 {
+  font-size: 12px; /* text-[12px] */
+  color: #000000; /* text-black */
+  font-weight: 600; /* font-semibold */
+}
+
+.kds-used-color-display {
+  margin-bottom: 1rem; /* mb-4 */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+  margin-top: 0.5rem; /* mt-2 */
+}
+
+.kds-used-color-swatch {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+  border-radius: 50%; /* rounded-full */
+  cursor: pointer;
+  border: 2px solid transparent; /* border-2 */
+  transition: all 0.15s; /* transition-all duration-150 */
+}
+
+.kds-used-color-text {
+  font-size: 0.875rem; /* text-sm */
+}
+
+.kds-all-colors-section h3 {
+  font-size: 12px; /* text-[12px] */
+  font-weight: 600; /* font-semibold */
+  color: #000000; /* text-black */
+}
+
+.kds-color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* grid-cols-6 */
+  align-items: center; /* items-center */
+  gap: 0.5rem; /* gap-2 */
+  margin-top: 0.5rem; /* mt-2 */
+}
+
+.kds-color-swatch {
+  width: 1.5rem; /* w-6 */
+  height: 1.5rem; /* h-6 */
+  border-radius: 50%; /* rounded-full */
+  cursor: pointer;
+  border: 2px solid transparent; /* border-2 */
+  transition: all 0.15s; /* transition-all duration-150 */
+}
+
+.kds-color-swatch.kds-selected {
+  border-color: #000000; /* border-black */
+  transform: scale(1.1); /* scale-110 */
+}
+
+.kds-color-swatch.kds-unselected {
+  border-color: transparent; /* border-transparent */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kds-color-container {
+    width: calc(100vw - 2rem);
+    max-width: 18rem;
+  }
+  
+  .kds-color-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .kds-color-container {
+    width: calc(100vw - 1rem);
+  }
+  
+  .kds-color-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.375rem;
+  }
+  
+  .kds-color-swatch,
+  .kds-used-color-swatch {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .kds-color-content {
+    padding: 0.5rem;
+  }
+  
+  .kds-color-header {
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .kds-color-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} 

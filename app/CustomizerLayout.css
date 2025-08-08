@@ -1,0 +1,332 @@
+/* Customizer Layout Styles with kds- prefix */
+
+.kds-layout-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f4f6;
+  position: relative;
+  max-width: 1720px;
+  margin: 0 auto;
+}
+
+.kds-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kds-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kds-loading-spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid white;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: kds-spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.kds-loading-text {
+  color: white;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+@keyframes kds-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.kds-controls-bar {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #D3DBDF;
+  background-color: white;
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+}
+
+.kds-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kds-controls-divider {
+  transform: rotate(90deg);
+  border-top: 1px solid #D3DBDF;
+  height: 1px;
+  width: 20px;
+}
+
+.kds-controls-zoom {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Transform flip for redo button */
+.kds-transform-flip {
+  transform: scaleX(-1);
+}
+
+/* Canvas container */
+.kds-canvas-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60vw !important;
+  height: 90vh !important;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.kds-save-success {
+  position: fixed;
+  top: 5rem;
+  right: 1.75rem;
+  background-color: #10b981;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.kds-save-success-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.kds-save-success-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.kds-chat-box {
+  width: 350px;
+  height: 430px;
+  position: absolute;
+  right: 1.75rem;
+  bottom: 7rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  z-index: 70;
+}
+
+.kds-chat-header {
+  background: linear-gradient(to bottom, #1B2653, #192248);
+  color: white;
+  padding: 0.75rem 1rem;
+}
+
+.kds-chat-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kds-chat-close-btn {
+  cursor: pointer;
+}
+
+.kds-chat-title {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.kds-chat-title h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.kds-chat-title p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.kds-chat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.kds-chat-item {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.kds-chat-item:hover {
+  background-color: #f9fafb;
+}
+
+.kds-chat-item-text {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.kds-chat-item-arrow {
+  color: #9ca3af;
+}
+
+.kds-chat-divider {
+  border-top: 1px solid #D3DBDF;
+  height: 1px;
+}
+
+.kds-chat-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  border-radius: 50%;
+  background-color: #3559C7;
+  position: absolute;
+  right: 1.75rem;
+  bottom: 1.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.kds-chat-button:hover {
+  background-color: #2a47a3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .kds-layout-container {
+    max-width: 100%;
+  }
+  
+  .kds-chat-box {
+    width: 300px;
+    height: 400px;
+    right: 1rem;
+    bottom: 6rem;
+  }
+  
+  .kds-chat-button {
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .kds-layout-container {
+    flex-direction: column;
+  }
+  
+  .kds-controls-bar {
+    bottom: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .kds-controls-zoom {
+    gap: 0.5rem;
+  }
+  
+  .kds-save-success {
+    top: 4rem;
+    right: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .kds-chat-box {
+    width: 280px;
+    height: 350px;
+    right: 0.5rem;
+    bottom: 5rem;
+  }
+  
+  .kds-chat-header {
+    padding: 0.5rem;
+  }
+  
+  .kds-chat-title h2 {
+    font-size: 1.125rem;
+  }
+  
+  .kds-chat-title p {
+    font-size: 0.8rem;
+  }
+  
+  .kds-chat-item {
+    padding: 0.5rem;
+  }
+  
+  .kds-chat-item-text {
+    font-size: 0.875rem;
+  }
+  
+  .kds-chat-button {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kds-controls-bar {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.5rem;
+  }
+  
+  .kds-controls-divider {
+    transform: rotate(0deg);
+    width: 100%;
+    height: 1px;
+  }
+  
+  .kds-save-success {
+    top: 3rem;
+    right: 0.5rem;
+    left: 0.5rem;
+    text-align: center;
+  }
+  
+  .kds-chat-box {
+    width: calc(100% - 1rem);
+    height: 300px;
+    right: 0.5rem;
+    left: 0.5rem;
+    bottom: 4rem;
+  }
+  
+  .kds-chat-button {
+    right: 0.5rem;
+    bottom: 0.5rem;
+    padding: 0.75rem;
+  }
+}

@@ -3,6 +3,7 @@ import FontSelector from './FontSelector';
 import CustomColorSwatch from './CustomColorSwatch';
 import { use2D } from '../../context/2DContext';
 import { use3D } from '@/app/context/3DContext';
+import './EditTextTab.css';
 
 const EditTextTab = ({ editor, layerManager }) => {
     const {
@@ -331,196 +332,200 @@ const EditTextTab = ({ editor, layerManager }) => {
     return (
         <>
             {shouldShowEditText && (
-                <div className="bg-white rounded-lg border border-[#D3DBDF] w-80 h-fit max-h-[460px] overflow-y-scroll">
+                <div className="kds-edit-text-container">
 
-                    <div className='flex items-center justify-between py-2 px-3'>
-                        <div className='flex items-center gap-2'>
-                            <h3 className='text-[16px] text-black font-semibold'>Edit text</h3>
+                    <div className='kds-edit-text-header'>
+                        <div className='kds-edit-text-title-section'>
+                            <h3 className='kds-edit-text-title'>Edit text</h3>
                             {activeTextObject && (
-                                <span className='text-xs text-green-600 font-medium'>
+                                <span className='kds-edit-text-status kds-detected'>
                                     ● Auto-detected ({textObjectsCount} text{textObjectsCount !== 1 ? 's' : ''})
                                 </span>
                             )}
                             {!activeTextObject && textObjectsCount === 0 && (
-                                <span className='text-xs text-blue-600 font-medium'>
+                                <span className='kds-edit-text-status kds-ready'>
                                     ● Ready to create
                                 </span>
                             )}
                         </div>
-                        <div className="cursor-pointer" onClick={() => setShowEditModal(false)}>
+                        <div className="kds-edit-text-close" onClick={() => setShowEditModal(false)}>
                             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-edit-text-divider" />
 
-                    <div className='py-3 px-4'>
+                    <div className='kds-edit-text-content'>
                         <input
                             type="text"
                             value={customText}
                             onChange={handleTextChange}
                             placeholder="Add Headline"
-                            className="border border-[#D3DBDF] text-black rounded-lg p-3 min-h-20 w-full placeholder:font-semibold"
+                            className="kds-edit-text-input"
                         />
                         {!activeTextObject && (
-                            <p className="text-xs text-gray-500 mt-2">
+                            <p className="kds-edit-text-hint">
                                 💡 Type text above to automatically create a text object
                             </p>
                         )}
                     </div>
 
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-edit-text-divider" />
 
-                    <div className='flex items-center justify-between py-3 px-3'>
-                        <div className='flex items-center gap-2'>
-                            <h3 className='text-[14px] text-black font-semibold'>Flip</h3>
+                    <div className='kds-edit-text-section'>
+                        <div className='kds-edit-text-title-section'>
+                            <h3 className='kds-edit-text-section-title'>Flip</h3>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="kds-edit-text-controls">
                             <img
                                 onClick={handleFlipX}
-                                className='w-[22px] cursor-pointer'
+                                className='kds-edit-text-control-icon'
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507255/tune-vertical_ezas8p.png"
                                 alt="flip horizontal"
                             />
                             <img
                                 onClick={handleFlipY}
-                                className='w-[22px] cursor-pointer'
+                                className='kds-edit-text-control-icon'
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/flip-vertical_ajs5ur.png"
                                 alt="flip vertical"
                             />
                         </div>
                     </div>
 
-                    <hr className="border-t border-[rgb(211,219,223)] h-px" />
+                    <hr className="kds-edit-text-divider" />
 
-                    <div className=' py-3 px-3'>
-                        <div className='flex items-center gap-2'>
-                            <h3 className='text-[14px] text-black font-semibold'>Font</h3>
+                    <div className='kds-edit-text-font-section'>
+                        <div className='kds-edit-text-font-header'>
+                            <h3 className='kds-edit-text-section-title'>Font</h3>
                         </div>
-                        <div className="flex items-center gap-3 mt-2">
+                        <div className="kds-edit-text-font-controls">
                             <div
                                 onClick={() => setShowTextSelectTab(true)}
-                                className='border border-[#D3DBDF] min-w-[165px] cursor-pointer flex items-center justify-between rounded-md p-2'
+                                className='kds-edit-text-font-selector'
                             >
-                                <span className='text-[14px] text-gray-500 font-medium'>
+                                <span className='kds-edit-text-font-name'>
                                     {currentFont}
                                 </span>
-                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1750138078/chevron-right_p6kmcp.svg" alt="arrow" />
+                                <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1750138078/chevron-right_p6kmcp.svg" alt="arrow" className="kds-edit-text-font-arrow" />
                             </div>
 
                             <img
-                                className='cursor-pointer'
+                                className='kds-edit-text-style-icon'
                                 onClick={() => handleFontStyleChange('bold')}
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1750137959/alpha-b_aygypw.svg"
                                 alt="bold"
                             />
                             <img
-                                className='cursor-pointer'
+                                className='kds-edit-text-style-icon'
                                 onClick={() => handleFontStyleChange('italic')}
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1750137959/format-italic_d9ndma.svg"
                                 alt="italic"
                             />
 
                             <div
-                                className={`w-6 h-6 rounded-full cursor-pointer border-2 transition-all duration-150`}
+                                className="kds-edit-text-color-swatch"
                                 style={{ backgroundColor: currentColor }}
                                 onClick={() => setShowColorTab(true)}
                             />
                         </div>
                     </div>
 
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-edit-text-divider" />
 
-                    <div className="bg-white p-3 rounded shadow-md mt-2 space-y-2">
-                        <div>
-                            <label>3D Text Scale: {threeDtextScale.toFixed(2)}</label>
-                            <input type="range" min="0.2" max="2" step="0.05" value={threeDtextScale} onChange={(e) => setthreeDTextScale(parseFloat(e.target.value))} />
-                        </div>
-                        <div>
-                            <label>3D Text Position X: {threeDtextPosX.toFixed(2)}</label>
-                            <input type="range" min="0" max="1" step="0.01" value={threeDtextPosX} onChange={(e) => setthreeDTextPosX(parseFloat(e.target.value))} />
-                        </div>
-                        <div>
-                            <label>3D Text Position Y: {threeDtextPosY.toFixed(2)}</label>
-                            <input type="range" min="0" max="1" step="0.01" value={threeDtextPosY} onChange={(e) => setthreeDTextPosY(parseFloat(e.target.value))} />
+                    <div className="kds-edit-text-3d-section">
+                        <div className="kds-edit-text-3d-controls">
+                            <div className="kds-edit-text-3d-control">
+                                <label className="kds-edit-text-3d-label">3D Text Scale: {threeDtextScale.toFixed(2)}</label>
+                                <input type="range" min="0.2" max="2" step="0.05" value={threeDtextScale} onChange={(e) => setthreeDTextScale(parseFloat(e.target.value))} className="kds-edit-text-3d-range" />
+                            </div>
+                            <div className="kds-edit-text-3d-control">
+                                <label className="kds-edit-text-3d-label">3D Text Position X: {threeDtextPosX.toFixed(2)}</label>
+                                <input type="range" min="0" max="1" step="0.01" value={threeDtextPosX} onChange={(e) => setthreeDTextPosX(parseFloat(e.target.value))} className="kds-edit-text-3d-range" />
+                            </div>
+                            <div className="kds-edit-text-3d-control">
+                                <label className="kds-edit-text-3d-label">3D Text Position Y: {threeDtextPosY.toFixed(2)}</label>
+                                <input type="range" min="0" max="1" step="0.01" value={threeDtextPosY} onChange={(e) => setthreeDTextPosY(parseFloat(e.target.value))} className="kds-edit-text-3d-range" />
+                            </div>
                         </div>
                     </div>
 
-                    <div className="bg-white p-3 rounded shadow-md mt-2 space-y-2">
-                        <label className="block mt-2">Text Color:</label>
-                        <input
-                            type="color"
-                            value={threeDtextColor}
-                            onChange={(e) => setthreeDTextColor(e.target.value)}
-                        />
+                    <div className="kds-edit-text-3d-color-section">
+                        <div className="kds-edit-text-3d-color-controls">
+                            <label className="kds-edit-text-3d-color-label">Text Color:</label>
+                            <input
+                                type="color"
+                                value={threeDtextColor}
+                                onChange={(e) => setthreeDTextColor(e.target.value)}
+                                className="kds-edit-text-3d-color-input"
+                            />
 
-                        <label className="block mt-2">Outline Color:</label>
-                        <input
-                            type="color"
-                            value={threeDoutlineColor}
-                            onChange={(e) => setthreeDOutlineColor(e.target.value)}
-                        />
+                            <label className="kds-edit-text-3d-color-label">Outline Color:</label>
+                            <input
+                                type="color"
+                                value={threeDoutlineColor}
+                                onChange={(e) => setthreeDOutlineColor(e.target.value)}
+                                className="kds-edit-text-3d-color-input"
+                            />
+                        </div>
                     </div>
 
-
-
-                    <div className='flex flex-col gap-3 justify-between py-4 px-3'>
-                        <label className="text-[14px] text-black font-medium">Size</label>
+                    <div className='kds-edit-text-sliders'>
+                        <label className="kds-edit-text-slider-label">Size</label>
                         <input
                             type="range"
                             min={23}
                             max={40}
                             value={textSize}
                             onChange={handleSizeChange}
-                            className="w-full"
+                            className="kds-edit-text-slider"
                         />
 
-                        <label className="text-[14px] text-black font-medium">Spacing</label>
+                        <label className="kds-edit-text-slider-label">Spacing</label>
                         <input
                             type="range"
                             min={-10}
                             max={100}
                             value={textSpacing}
                             onChange={handleSpacingChange}
-                            className="w-full"
+                            className="kds-edit-text-slider"
                         />
                     </div>
 
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-edit-text-divider" />
 
-                    <div className='flex flex-col gap-3 justify-between py-3 px-3'>
-                        <h3 className='text-[14px] font-semibold text-black'>Arrange</h3>
-                        <div className="flex items-center gap-7">
+                    <div className='kds-edit-text-arrange'>
+                        <h3 className='kds-edit-text-arrange-title'>Arrange</h3>
+                        <div className="kds-edit-text-arrange-controls">
                             <img
                                 onClick={handleBringForward}
-                                className='w-[20px] cursor-pointer'
+                                className='kds-edit-text-arrange-icon'
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-bring-forward_vigco4.png"
                                 alt="bring forward"
                                 title="Bring Forward"
                             />
                             <img
                                 onClick={() => handleArrangeAction('bringToFront')}
-                                className='w-[20px] cursor-pointer'
+                                className='kds-edit-text-arrange-icon'
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-bring-to-front_povosv.png"
                                 alt="bring to front"
                                 title="Bring to Front"
                             />
                             <img
                                 onClick={() => handleArrangeAction('sendBackward')}
-                                className='w-[20px] cursor-pointer'
+                                className='kds-edit-text-arrange-icon'
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-send-backward_buzw6f.png"
                                 alt="send backward"
                                 title="Send Backward"
                             />
                             <img
                                 onClick={() => handleArrangeAction('sendToBack')}
-                                className='w-[20px] cursor-pointer'
+                                className='kds-edit-text-arrange-icon'
                                 src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508121/arrange-send-to-back_bcyzlu.png"
                                 alt="send to back"
                                 title="Send to Back"
                             />
                         </div>
                         {layerManager && (
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="kds-edit-text-layer-info">
                                 ⚡ Layer system active - TEXT layer (zIndex: 5)
                             </p>
                         )}

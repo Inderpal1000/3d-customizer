@@ -1,0 +1,208 @@
+/* Screenshot Gallery Styles with kds- prefix */
+
+.kds-gallery-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.kds-gallery-modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 64rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.kds-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.kds-gallery-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.kds-gallery-close-btn {
+  color: #6b7280;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.kds-gallery-close-btn:hover {
+  color: #374151;
+}
+
+.kds-gallery-preview-container {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.kds-gallery-preview-wrapper {
+  position: relative;
+}
+
+.kds-gallery-preview-image {
+  width: 24rem;
+  height: 24rem;
+  object-fit: contain;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: #f9fafb;
+}
+
+.kds-gallery-preview-label {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+}
+
+.kds-gallery-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kds-gallery-thumbnail {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  transition: border-color 0.2s ease;
+}
+
+.kds-gallery-thumbnail:hover {
+  border-color: #3b82f6;
+}
+
+.kds-gallery-thumbnail-active {
+  border-color: #3b82f6;
+}
+
+.kds-gallery-thumbnail-image {
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+}
+
+.kds-gallery-thumbnail-label {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.125rem;
+  text-transform: capitalize;
+}
+
+.kds-gallery-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.kds-gallery-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.kds-gallery-btn-primary {
+  background-color: #16a34a;
+  color: white;
+}
+
+.kds-gallery-btn-primary:hover {
+  background-color: #15803d;
+}
+
+.kds-gallery-btn-secondary {
+  background-color: #4b5563;
+  color: white;
+}
+
+.kds-gallery-btn-secondary:hover {
+  background-color: #374151;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .kds-gallery-modal {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  .kds-gallery-preview-image {
+    width: 100%;
+    height: auto;
+    max-height: 20rem;
+  }
+  
+  .kds-gallery-thumbnails {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .kds-gallery-thumbnail-image {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .kds-gallery-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .kds-gallery-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .kds-gallery-title {
+    font-size: 1.25rem;
+  }
+  
+  .kds-gallery-preview-image {
+    max-height: 15rem;
+  }
+  
+  .kds-gallery-thumbnail-image {
+    width: 3rem;
+    height: 3rem;
+  }
+}

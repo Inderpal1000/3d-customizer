@@ -8,6 +8,7 @@ import EditTextTab from "./2d/EditTextTab";
 import SelectColorsTab from "./2d/SelectColorsTab";
 import DynamicClipartTab from "./2d/ClipartTab"; // Updated import
 import RightSideImageUpload from "./2d/RightSideImageComponent";
+import "./Sidebar.css";
 
 const Sidebar = ({
   editor,
@@ -115,6 +116,8 @@ const Sidebar = ({
       if (designExists && !hasUploadedImage && activeTab === "edit") {
         setHasUploadedImage(true);
         setShowImageEditModal(true);
+      } else {
+        setHasUploadedImage(false);
       }
     };
 
@@ -205,8 +208,8 @@ const Sidebar = ({
   };
 
   return (
-    <div className="absolute top-24 sm:top-28 left-7 w-[35%] flex gap-5 z-50 flex-col sm:flex-row">
-      <div className="bg-white p-5 rounded-lg border border-[#D3DBDF] flex flex-row sm:flex-col h-fit items-center justify-between sm:justify-normal gap-6">
+    <div className="kds-sidebar">
+      <div className="kds-sidebar-menu">
         {[
           { key: "editor", label: "Editor", icon: "Frame_4_vzkhrn" },
           { key: "edit", label: "Edit", icon: "pencil-outline_c6lwsj" },
@@ -218,14 +221,14 @@ const Sidebar = ({
           <div
             key={key}
             onClick={() => handleTabClick(key)}
-            className="flex flex-col gap-2 cursor-pointer"
+            className="kds-tab"
           >
             <img
               src={`https://res.cloudinary.com/dd9tagtiw/image/upload/v1749641805/${icon}.svg`}
               alt={label}
-              className="m-auto w-[23px] h-[23px]"
+              className="kds-tab-icon"
             />
-            <p className={`text-[12px] text-black text-center font-semibold ${activeTab === key ? "text-blue-600" : ""}`}>
+            <p className={`kds-tab-label ${activeTab === key ? "kds-active" : ""}`}>
               {label}
             </p>
           </div>

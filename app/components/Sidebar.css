@@ -1,0 +1,72 @@
+/* Sidebar Component Styles */
+
+.kds-sidebar {
+  position: absolute;
+  top: 6rem; /* top-24 */
+  left: 1.75rem; /* left-7 */
+  width: 35%;
+  display: flex;
+  gap: 1.25rem; /* gap-5 */
+  z-index: 50; /* z-50 */
+  flex-direction: column; /* flex-col */
+}
+
+@media (min-width: 640px) {
+  .kds-sidebar {
+    top: 7rem; /* sm:top-28 */
+    flex-direction: row; /* sm:flex-row */
+  }
+}
+
+.kds-sidebar-menu {
+  background-color: #ffffff;
+  padding: 1.25rem; /* p-5 */
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #D3DBDF;
+  display: flex;
+  flex-direction: row; /* flex-row */
+  height: fit-content; /* h-fit */
+  align-items: center; /* items-center */
+  justify-content: space-between; /* justify-between */
+  gap: 1.5rem; /* gap-6 */
+}
+
+@media (min-width: 640px) {
+  .kds-sidebar-menu {
+    flex-direction: column; /* sm:flex-col */
+    justify-content: flex-start; /* sm:justify-normal */
+  }
+}
+
+.kds-tab {
+  display: flex;
+  flex-direction: column; /* flex-col */
+  gap: 0.5rem; /* gap-2 */
+  cursor: pointer;
+}
+
+.kds-tab-icon {
+  display: block;
+  margin: 0 auto; /* m-auto */
+  width: 23px; /* w-[23px] */
+  height: 23px; /* h-[23px] */
+}
+
+.kds-tab-label {
+  font-size: 12px; /* text-[12px] */
+  color: #000000; /* text-black */
+  text-align: center; /* text-center */
+  font-weight: 600; /* font-semibold */
+}
+
+.kds-tab-label.kds-active {
+  color: #2563eb; /* text-blue-600 */
+}
+
+/* Small screens: consider wider sidebar for usability */
+@media (max-width: 480px) {
+  .kds-sidebar {
+    left: 1rem;
+    width: calc(100% - 2rem);
+  }
+}

@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useCallback } from 'react'
+import './PreviewTab.css'
 
 const PreviewTab = ({
     updateArrange,
@@ -329,211 +330,190 @@ const PreviewTab = ({
     }, []);
 
     return (
-        <div className="bg-white rounded-lg border border-[#D3DBDF] w-80 h-fit max-h-[600px] overflow-y-auto">
-            <style jsx>{`
-                .slider::-webkit-slider-thumb {
-                    appearance: none;
-                    height: 16px;
-                    width: 16px;
-                    border-radius: 50%;
-                    background: #3559C7;
-                    cursor: pointer;
-                    border: 2px solid #ffffff;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                }
-                .slider::-moz-range-thumb {
-                    height: 16px;
-                    width: 16px;
-                    border-radius: 50%;
-                    background: #3559C7;
-                    cursor: pointer;
-                    border: 2px solid #ffffff;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-                }
-            `}</style>
-            <div className='flex items-center justify-between py-2 px-3'>
-                <div className='flex items-center gap-2'>
-                    <h3 className='text-[16px] text-black font-semibold'>Preview</h3>
+        <div className="kds-preview-container">
+            <div className='kds-preview-header'>
+                <div className='kds-preview-title-section'>
+                    <h3 className='kds-preview-title'>Preview</h3>
                 </div>
                 <div
                     onClick={() => setShowImageEditModal && setShowImageEditModal(false)}
-                    className='cursor-pointer'
+                    className='kds-preview-close'
                 >
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
                 </div>
             </div>
-            <hr className="border-t border-[#D3DBDF] h-px" />
+            <hr className="kds-preview-divider" />
 
             {designProps ? (
                 <>
-                    <div className='flex items-center gap-3 py-3 px-3'>
-                        <div className="border border-[#D3DBDF] rounded-lg p-2 w-[30%]">
+                    <div className='kds-preview-design-section'>
+                        <div className="kds-preview-design-image">
                             {designProps.imageSrc ? (
                                 <img
                                     src={designProps.imageSrc}
                                     alt="Design"
-                                    className="w-full h-12 object-contain rounded"
+                                    className="kds-preview-design-img"
                                 />
                             ) : (
-                                <div className="w-full h-12 bg-gray-100 rounded flex items-center justify-center">
-                                    <span className="text-xs text-gray-500">Design</span>
+                                <div className="kds-preview-design-placeholder">
+                                    <span className="kds-preview-design-placeholder-text">Design</span>
                                 </div>
                             )}
                         </div>
-                        <div className="flex-1">
-                            <p className="font-semibold text-[12px] text-gray-600 mb-2">Width x Height</p>
-                            <div className='flex items-center gap-2'>
-                                <span className='rounded-full bg-gray-100 py-1 px-2 text-gray-600 text-[11px]'>
+                        <div className="kds-preview-design-info">
+                            <p className="kds-preview-dimensions-label">Width x Height</p>
+                            <div className='kds-preview-dimensions'>
+                                <span className='kds-preview-dimension-badge'>
                                     {(designProps.width / 50).toFixed(2)} in
                                 </span>
-                                <span className='rounded-full bg-gray-100 py-1 px-2 text-gray-600 text-[11px]'>
+                                <span className='kds-preview-dimension-badge'>
                                     {(designProps.height / 50).toFixed(2)} in
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-preview-divider" />
 
-                    <div className='flex items-center justify-between py-3 px-3'>
-                        <h3 className='text-[14px] text-black font-semibold'>Flip</h3>
-                        <div className="flex items-center gap-3">
+                    <div className='kds-preview-flip-section'>
+                        <h3 className='kds-preview-flip-title'>Flip</h3>
+                        <div className="kds-preview-flip-buttons">
                             <button
                                 onClick={() => handleFlip('horizontal')}
-                                className={`p-1 rounded ${flipStates.flipX ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
+                                className={`kds-preview-flip-button ${flipStates.flipX ? 'kds-active' : ''}`}
                             >
                                 <img
-                                    className="w-[20px] h-[20px]"
+                                    className="kds-preview-flip-icon"
                                     src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507255/tune-vertical_ezas8p.png"
                                     alt="Flip Horizontal"
                                 />
                             </button>
                             <button
                                 onClick={() => handleFlip('vertical')}
-                                className={`p-1 rounded ${flipStates.flipY ? 'bg-blue-100' : 'hover:bg-gray-100'}`}
+                                className={`kds-preview-flip-button ${flipStates.flipY ? 'kds-active' : ''}`}
                             >
                                 <img
-                                    className="w-[20px] h-[20px]"
+                                    className="kds-preview-flip-icon"
                                     src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/flip-vertical_ajs5ur.png"
                                     alt="Flip Vertical"
                                 />
                             </button>
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-preview-divider" />
 
-                    <div className='py-3 px-3'>
-                        <h3 className='text-[14px] text-black font-semibold mb-3'>Alignment</h3>
-                        <div className="grid grid-cols-6 gap-2">
-                            <button onClick={() => handleAlign("left")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px] mx-auto' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507255/align-horizontal-left_fbsuoo.png" alt="Left" />
+                    <div className='kds-preview-alignment-section'>
+                        <h3 className='kds-preview-alignment-title'>Alignment</h3>
+                        <div className="kds-preview-alignment-grid">
+                            <button onClick={() => handleAlign("left")} className='kds-preview-alignment-button'>
+                                <img className='kds-preview-alignment-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507255/align-horizontal-left_fbsuoo.png" alt="Left" />
                             </button>
-                            <button onClick={() => handleAlign("center")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px] mx-auto' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507255/Frame_46_rrtm82.png" alt="Center" />
+                            <button onClick={() => handleAlign("center")} className='kds-preview-alignment-button'>
+                                <img className='kds-preview-alignment-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507255/Frame_46_rrtm82.png" alt="Center" />
                             </button>
-                            <button onClick={() => handleAlign("right")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px] mx-auto' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-horizontal-right_adq5ap.png" alt="Right" />
+                            <button onClick={() => handleAlign("right")} className='kds-preview-alignment-button'>
+                                <img className='kds-preview-alignment-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-horizontal-right_adq5ap.png" alt="Right" />
                             </button>
-                            <button onClick={() => handleAlign("top")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px] mx-auto' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-vertical-top_nmalzx.png" alt="Top" />
+                            <button onClick={() => handleAlign("top")} className='kds-preview-alignment-button'>
+                                <img className='kds-preview-alignment-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-vertical-top_nmalzx.png" alt="Top" />
                             </button>
-                            <button onClick={() => handleAlign("middle")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px] mx-auto' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-vertical-center_wguxnj.png" alt="Middle" />
+                            <button onClick={() => handleAlign("middle")} className='kds-preview-alignment-button'>
+                                <img className='kds-preview-alignment-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-vertical-center_wguxnj.png" alt="Middle" />
                             </button>
-                            <button onClick={() => handleAlign("bottom")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px] mx-auto' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-vertical-bottom_damnnr.png" alt="Bottom" />
+                            <button onClick={() => handleAlign("bottom")} className='kds-preview-alignment-button'>
+                                <img className='kds-preview-alignment-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749507254/align-vertical-bottom_damnnr.png" alt="Bottom" />
                             </button>
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-preview-divider" />
 
-                    <div className='py-3 px-3'>
-                        <label className="text-[14px] text-black font-semibold block mb-2">Opacity</label>
-                        <div className='flex items-center gap-2'>
+                    <div className='kds-preview-control-section'>
+                        <label className="kds-preview-control-label">Opacity</label>
+                        <div className='kds-preview-control-input-group'>
                             <input
                                 type="range"
                                 min="0"
                                 max="100"
                                 value={designProps?.opacity || 100}
                                 onChange={(e) => handleOpacityChange(parseInt(e.target.value))}
-                                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                                className="kds-preview-slider"
                                 style={{
                                     background: `linear-gradient(to right, #3559C7 0%, #3559C7 ${designProps?.opacity || 100}%, #e5e7eb ${designProps?.opacity || 100}%, #e5e7eb 100%)`
                                 }}
                             />
-                            <span className='border border-[#D3DBDF] min-w-12 text-center rounded-md text-[12px] py-1 px-2'>
+                            <span className='kds-preview-value-display'>
                                 {designProps?.opacity || 100}%
                             </span>
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-preview-divider" />
 
-                    <div className='py-3 px-3'>
-                        <label className="text-[14px] text-black font-semibold block mb-2">Rotate</label>
-                        <div className='flex items-center gap-2'>
+                    <div className='kds-preview-control-section'>
+                        <label className="kds-preview-control-label">Rotate</label>
+                        <div className='kds-preview-control-input-group'>
                             <input
                                 type="range"
                                 min="0"
                                 max="360"
                                 value={designProps?.rotation || 0}
                                 onChange={(e) => handleRotateChange(parseInt(e.target.value))}
-                                className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                                className="kds-preview-slider"
                                 style={{
                                     background: `linear-gradient(to right, #3559C7 0%, #3559C7 ${((designProps?.rotation || 0) / 360) * 100}%, #e5e7eb ${((designProps?.rotation || 0) / 360) * 100}%, #e5e7eb 100%)`
                                 }}
                             />
-                            <span className='border border-[#D3DBDF] min-w-12 text-center rounded-md text-[12px] py-1 px-2'>
+                            <span className='kds-preview-value-display'>
                                 {designProps?.rotation || 0}°
                             </span>
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-preview-divider" />
 
-                    <div className='py-3 px-3'>
-                        <h3 className='text-[14px] text-black font-semibold mb-3'>Arrange</h3>
-                        <div className="flex items-center gap-4">
-                            <button onClick={() => handleArrange("bringForward")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px]' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-bring-forward_vigco4.png" alt="Forward" />
+                    <div className='kds-preview-arrange-section'>
+                        <h3 className='kds-preview-arrange-title'>Arrange</h3>
+                        <div className="kds-preview-arrange-buttons">
+                            <button onClick={() => handleArrange("bringForward")} className='kds-preview-arrange-button'>
+                                <img className='kds-preview-arrange-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-bring-forward_vigco4.png" alt="Forward" />
                             </button>
-                            <button onClick={() => handleArrange("bringToFront")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px]' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-bring-to-front_povosv.png" alt="Front" />
+                            <button onClick={() => handleArrange("bringToFront")} className='kds-preview-arrange-button'>
+                                <img className='kds-preview-arrange-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-bring-to-front_povosv.png" alt="Front" />
                             </button>
-                            <button onClick={() => handleArrange("sendBackward")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px]' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-send-backward_buzw6f.png" alt="Backward" />
+                            <button onClick={() => handleArrange("sendBackward")} className='kds-preview-arrange-button'>
+                                <img className='kds-preview-arrange-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508122/arrange-send-backward_buzw6f.png" alt="Backward" />
                             </button>
-                            <button onClick={() => handleArrange("sendToBack")} className='p-2 hover:bg-gray-100 rounded'>
-                                <img className='w-[18px] h-[18px]' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508121/arrange-send-to-back_bcyzlu.png" alt="Back" />
+                            <button onClick={() => handleArrange("sendToBack")} className='kds-preview-arrange-button'>
+                                <img className='kds-preview-arrange-icon' src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508121/arrange-send-to-back_bcyzlu.png" alt="Back" />
                             </button>
                         </div>
                     </div>
-                    <hr className="border-t border-[#D3DBDF] h-px" />
+                    <hr className="kds-preview-divider" />
 
-                    <div className='py-3 px-3'>
-                        <h3 className='text-[14px] text-black font-semibold mb-3'>Tools</h3>
+                    <div className='kds-preview-tools-section'>
+                        <h3 className='kds-preview-tools-title'>Tools</h3>
 
                         <button
-                            className={`w-full border border-gray-300 rounded-md py-3 text-[14px] flex items-center justify-start gap-3 mb-3 hover:bg-gray-50 transition-colors ${isRemovingBg ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            className={`kds-preview-tool-button ${isRemovingBg ? 'kds-disabled' : ''}`}
                             onClick={handleRemoveBackground}
                             disabled={isRemovingBg}
                         >
-                            <img className="w-4 h-4 ml-3" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508617/circle-opacity_zvwbfk.png" alt="" />
-                            <span className='text-black'>
+                            <img className="kds-preview-tool-icon" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508617/circle-opacity_zvwbfk.png" alt="" />
+                            <span className='kds-preview-tool-text'>
                                 {isRemovingBg ? 'Removing...' : 'Remove Background'}
                             </span>
                         </button>
 
                         <button
-                            className='w-full border border-gray-300 rounded-md py-3 text-[14px] flex items-center justify-start gap-3 hover:bg-gray-50 transition-colors'
+                            className='kds-preview-tool-button'
                             onClick={handleUpscale}
                         >
-                            <img className="w-4 h-4 ml-3" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508617/move-resize-variant_karpuj.png" alt="" />
-                            <span className='text-black'>Upscale</span>
+                            <img className="kds-preview-tool-icon" src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749508617/move-resize-variant_karpuj.png" alt="" />
+                            <span className='kds-preview-tool-text'>Upscale</span>
                         </button>
                     </div>
                 </>
             ) : (
-                <div className="p-6 text-center text-gray-500">
-                    <p className="text-[14px]">No design selected</p>
-                    <p className="text-[12px] mt-1">Upload a design to start editing</p>
+                <div className="kds-preview-empty-state">
+                    <p className="kds-preview-empty-text kds-reset">No design selected</p>
+                    <p className="kds-preview-empty-subtext kds-reset">Upload a design to start editing</p>
                 </div>
             )}
         </div>

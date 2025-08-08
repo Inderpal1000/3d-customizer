@@ -1,10 +1,11 @@
 import React from 'react';
+import './EmojiList.css';
 
 const EmojiList = ({ emojis,addEmojiTextToCanvas }) => {
     return (
-        <div className="grid grid-cols-2 gap-5 items-center p-3">
+        <div className="kds-emoji-grid">
             {emojis.map((emoji, index) => (
-                <span onClick={()=> addEmojiTextToCanvas(emoji)} key={index} className="text-3xl cursor-pointer flex justify-center items-center">
+                <span onClick={()=> addEmojiTextToCanvas(emoji)} key={index} className="kds-emoji-cell">
                     {emoji}
                 </span>
             ))}

@@ -1,0 +1,36 @@
+/* EmojiList Component Styles */
+
+.kds-emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
+  gap: 1.25rem; /* gap-5 */
+  align-items: center; /* items-center */
+  padding: 0.75rem; /* p-3 */
+}
+
+.kds-emoji-cell {
+  font-size: 1.875rem; /* text-3xl */
+  cursor: pointer;
+  display: flex; /* flex */
+  justify-content: center; /* justify-center */
+  align-items: center; /* items-center */
+  line-height: 1; 
+  transition: transform 0.15s ease;
+}
+
+.kds-emoji-cell:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (min-width: 480px) {
+  .kds-emoji-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .kds-emoji-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

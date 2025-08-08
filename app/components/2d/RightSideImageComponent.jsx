@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { FaUpload, FaArrowsAlt, FaSearchPlus, FaSearchMinus, FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight, FaTimes } from 'react-icons/fa';
+import './RightSideImageComponent.css';
 
 const RightSideImageUpload = ({ 
   editor, 
@@ -190,30 +191,30 @@ const RightSideImageUpload = ({
   };
 
   return (
-    <div className="bg-white rounded-lg border p-3 border-[#D3DBDF] w-80 h-fit max-h-[500px] overflow-y-auto">
+    <div className="kds-container">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-gray-800">Right Side Upload</h3>
-        <div className="w-6 h-6"></div> {/* Spacer for balance */}
+      <div className="kds-header">
+        <h3 className="kds-title">Right Side Upload</h3>
+        <div className="kds-spacer"></div> {/* Spacer for balance */}
       </div>
       
       {/* Upload Section */}
-      <div className="mb-4">
+      <div className="kds-upload-section">
         <input
           ref={fileInputRef}
           type="file"
           accept="image/*"
           onChange={handleFileUpload}
-          className="hidden"
+          className="kds-file-input"
         />
         
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={isUploading}
-          className="w-full flex items-center justify-center gap-2 p-3 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors disabled:opacity-50"
+          className="kds-upload-button"
         >
-          <FaUpload className="text-gray-500" />
-          <span className="text-gray-600 text-sm">
+          <FaUpload className="kds-upload-icon" />
+          <span className="kds-upload-text">
             {isUploading ? 'Uploading...' : 'Upload for Right Side'}
           </span>
         </button>
@@ -221,34 +222,34 @@ const RightSideImageUpload = ({
 
       {/* Controls - Only show when image is uploaded */}
       {rightSideImage && (
-        <div className="space-y-4">
+        <div className="kds-controls">
           {/* Preview */}
-          <div className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+          <div className="kds-preview">
             <img 
               src={rightSideImage} 
               alt="Right side preview" 
-              className="w-10 h-10 object-cover rounded border"
+              className="kds-preview-image"
             />
-            <span className="text-xs text-gray-600 flex-1">Uploaded Image</span>
+            <span className="kds-preview-text">Uploaded Image</span>
             <button
               onClick={removeRightSideImage}
-              className="text-red-500 hover:text-red-700 p-1"
+              className="kds-remove-button"
             >
               <FaTimes />
             </button>
           </div>
 
           {/* Scale Controls */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
+          <div className="kds-scale-section">
+            <label className="kds-scale-label">
               Size: {Math.round(imageScale * 100)}%
             </label>
-            <div className="flex items-center gap-2">
+            <div className="kds-scale-controls">
               <button
                 onClick={() => handleScaleChange(Math.max(0.2, imageScale - 0.1))}
-                className="p-1.5 bg-gray-100 rounded hover:bg-gray-200 text-sm"
+                className="kds-scale-button"
               >
-                <FaSearchMinus />
+                <FaSearchMinus className="kds-icon" />
               </button>
               <input
                 type="range"
@@ -257,63 +258,63 @@ const RightSideImageUpload = ({
                 step="0.1"
                 value={imageScale}
                 onChange={(e) => handleScaleChange(parseFloat(e.target.value))}
-                className="flex-1"
+                className="kds-scale-slider"
               />
               <button
                 onClick={() => handleScaleChange(Math.min(3, imageScale + 0.1))}
-                className="p-1.5 bg-gray-100 rounded hover:bg-gray-200 text-sm"
+                className="kds-scale-button"
               >
-                <FaSearchPlus />
+                <FaSearchPlus className="kds-icon" />
               </button>
             </div>
           </div>
 
           {/* Position Controls */}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-700">
+          <div className="kds-position-section">
+            <label className="kds-position-label">
               Position Controls
             </label>
-            <div className="grid grid-cols-3 gap-1">
+            <div className="kds-position-grid">
               <div></div>
               <button
                 onClick={() => handlePositionChange('up')}
-                className="p-2 bg-gray-100 rounded hover:bg-gray-200 flex justify-center"
+                className="kds-position-button"
               >
-                <FaArrowUp className="text-sm" />
+                <FaArrowUp className="kds-icon" />
               </button>
               <div></div>
               
               <button
                 onClick={() => handlePositionChange('left')}
-                className="p-2 bg-gray-100 rounded hover:bg-gray-200 flex justify-center"
+                className="kds-position-button"
               >
-                <FaArrowLeft className="text-sm" />
+                <FaArrowLeft className="kds-icon" />
               </button>
-              <div className="flex items-center justify-center">
-                <FaArrowsAlt className="text-gray-400 text-sm" />
+              <div className="kds-position-center">
+                <FaArrowsAlt className="kds-center-icon" />
               </div>
               <button
                 onClick={() => handlePositionChange('right')}
-                className="p-2 bg-gray-100 rounded hover:bg-gray-200 flex justify-center"
+                className="kds-position-button"
               >
-                <FaArrowRight className="text-sm" />
+                <FaArrowRight className="kds-icon" />
               </button>
               
               <div></div>
               <button
                 onClick={() => handlePositionChange('down')}
-                className="p-2 bg-gray-100 rounded hover:bg-gray-200 flex justify-center"
+                className="kds-position-button"
               >
-                <FaArrowDown className="text-sm" />
+                <FaArrowDown className="kds-icon" />
               </button>
               <div></div>
             </div>
           </div>
 
           {/* Fine Position Controls */}
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">X: {imagePosition.x}</label>
+          <div className="kds-fine-position">
+            <div className="kds-fine-position-item">
+              <label className="kds-fine-position-label">X: {imagePosition.x}</label>
               <input
                 type="range"
                 min="-100"
@@ -324,11 +325,11 @@ const RightSideImageUpload = ({
                   setImagePosition(newPos);
                   updateRightSideImage({ position: newPos });
                 }}
-                className="w-full"
+                className="kds-fine-position-slider"
               />
             </div>
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">Y: {imagePosition.y}</label>
+            <div className="kds-fine-position-item">
+              <label className="kds-fine-position-label">Y: {imagePosition.y}</label>
               <input
                 type="range"
                 min="-100"
@@ -339,13 +340,13 @@ const RightSideImageUpload = ({
                   setImagePosition(newPos);
                   updateRightSideImage({ position: newPos });
                 }}
-                className="w-full"
+                className="kds-fine-position-slider"
               />
             </div>
           </div>
 
           {/* Info */}
-          <div className="text-xs text-gray-500 p-2 bg-blue-50 rounded">
+          <div className="kds-info">
             💡 Image appears behind product on right 50% - shows through transparent areas
           </div>
         </div>

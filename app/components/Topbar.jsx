@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { use3D } from '../context/3DContext';
+import './Topbar.css';
 
 const Topbar = ({
   setShowSidebar,
@@ -36,20 +37,20 @@ const Topbar = ({
 
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
-      <div className="flex items-center justify-between px-6 py-3 max-w-[1720px] mx-auto">
+    <div className="kds-topbar">
+      <div className="kds-topbar-container">
 
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-3">
+        <div className="kds-left-section">
+          <div className="kds-logo-section">
 
             <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749337982/Customizer_w0ruf6.png" alt="" />
 
             <button
               onClick={() => setShowSidebar(prev => !prev)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+              className="kds-menu-button"
               aria-label="Toggle Sidebar"
             >
-              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="kds-menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
@@ -57,20 +58,20 @@ const Topbar = ({
         </div>
 
         {/* Right Section - Action Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="kds-right-section">
 
           {
             selectedProduct?.productType === "3D" && (
               <>
                 <button
-                  className="bg-green-600 text-white px-4 py-2 rounded mt-2 w-full"
+                  className="kds-save-views-button"
                   onClick={handleScreenshot}
                 >
                   Save All Views
                 </button>
 
                 <button
-                  className="bg-red-600 text-white px-4 py-2 h-full rounded mt-2 text-nowrap w-full"
+                  className="kds-clear-part-button"
                   onClick={handleClearSelectedPart}
                 >
                   Clear Selected Part
@@ -83,23 +84,20 @@ const Topbar = ({
           <button
             onClick={handleSave}
             disabled={isSaving}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${isSaving
-              ? 'bg-gray-400 cursor-not-allowed text-white'
-              : 'bg-blue-500 hover:bg-blue-600 text-white shadow-md hover:shadow-lg'
-              }`}
+            className="kds-save-button"
             title="Save design"
           >
             {isSaving ? (
               <>
-                <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
-                <span>Saving...</span>
+                <div className="kds-spinner"></div>
+                <span className="kds-reset">Saving...</span>
               </>
             ) : (
               <>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="kds-save-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
-                <span>Save</span>
+                <span className="kds-reset">Save</span>
               </>
             )}
           </button>

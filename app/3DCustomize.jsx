@@ -12,6 +12,7 @@ import ScreenshotManager from './components/3d/ScreenshotManage';
 import ScreenshotGallery from './components/3d/ScreenshotGallery';
 import TextControlsPanel from './components/3d/TextControlsPanel';
 import { use3D } from './context/3DContext';
+import './3DCustomize.css';
 
 export default function ThreeDCustomize() {
   const {
@@ -116,8 +117,8 @@ export default function ThreeDCustomize() {
   const modelUrl = selectedProduct?.model3D || '/models/brand1.glb';
 
   return (
-    <main className="h-screen w-screen flex justify-center items-center">
-      <div className="h-[100vh] w-[60%]">
+    <main className="kds-main">
+      <div className="kds-canvas-container">
         <Canvas
           gl={{ preserveDrawingBuffer: true }}
           camera={{ position: [0, 0.5, 2.5], fov: 80 }}
@@ -134,7 +135,7 @@ export default function ThreeDCustomize() {
         </Canvas>
       </div>
 
-      <div className="absolute bottom-4 left-4">
+      <div className="kds-controls-container">
         
 
         {/* <ControlsPanel
@@ -152,7 +153,7 @@ export default function ThreeDCustomize() {
 
         {/* {customizationData?.parts && Object.keys(customizationData.parts).length > 0 && (
           <button
-            className="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+            className="kds-btn kds-btn-primary kds-btn-mt-2"
             onClick={() => console.log('Customization Data:', customizationData)}
           >
             Save Customization
@@ -160,10 +161,10 @@ export default function ThreeDCustomize() {
         )}
 
         {threeDloading && (
-          <div className="fixed inset-0 z-50 bg-[rgba(0,0,0,0.9)] bg-opacity-60 flex items-center justify-center">
-            <div className="flex flex-col items-center">
-              <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mb-4"></div>
-              <div className="text-white text-lg font-medium">Capturing screenshots...</div>
+          <div className="kds-loading-overlay">
+            <div className="kds-loading-content">
+              <div className="kds-spinner"></div>
+              <div className="kds-loading-text">Capturing screenshots...</div>
             </div>
           </div>
         )}
@@ -177,7 +178,7 @@ export default function ThreeDCustomize() {
         )}
 
         <button
-          className="bg-red-600 text-white px-4 py-2 rounded mt-2 w-full"
+          className="kds-btn kds-btn-danger kds-btn-full kds-btn-mt-2"
           onClick={handleClearSelectedPart}
         >
           Clear Selected Part

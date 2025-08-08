@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { use2D } from '../../context/2DContext';
 import { use3D } from '@/app/context/3DContext';
+import './SelectColorsTab.css';
 
 const SelectColorsTab = () => {
   const {
@@ -121,7 +122,7 @@ const SelectColorsTab = () => {
       // For background colors, show the solid color
       return (
         <div
-          className={`w-8 h-8 rounded-full cursor-pointer transition-all duration-150`}
+          className="kds-color-preview"
           style={{ backgroundColor: colorObj.color }}
         />
       );
@@ -129,11 +130,10 @@ const SelectColorsTab = () => {
       // For gradient colors, show the image if available
       if (colorObj.url) {
         return (
-          <div className="w-8 h-8 rounded-full cursor-pointer transition-all duration-150 overflow-hidden border border-gray-200">
+          <div className="kds-color-preview">
             <img
               src={colorObj.url}
               alt={colorObj.name}
-              className="w-full h-full object-cover"
             />
           </div>
         );
@@ -141,7 +141,7 @@ const SelectColorsTab = () => {
         // Fallback to solid color if no URL
         return (
           <div
-            className={`w-8 h-8 rounded-full cursor-pointer transition-all duration-150`}
+            className="kds-color-preview"
             style={{ backgroundColor: colorObj.color || '#ccc' }}
           />
         );
@@ -156,39 +156,40 @@ const SelectColorsTab = () => {
   const hasGradientColors = selectedProduct?.colors?.topColor || selectedProduct?.colors?.bottomColor;
 
   return (
-    <div className="bg-white rounded-lg border border-[#D3DBDF] w-72 h-fit max-h-[460px] overflow-hidden">
-      <div className='flex items-center justify-between py-2 px-3'>
-        <div className='flex items-center gap-2'>
-          <h3 className='text-[16px] text-black font-semibold'>Select Colors</h3>
+    <div className="kds-container">
+      <div className='kds-header'>
+        <div className='kds-header-left'>
+          <h3 className='kds-title'>Select Colors</h3>
         </div>
-        <div onClick={() => setShowBgColorsModal(false)} className="cursor-pointer">
+        <div onClick={() => setShowBgColorsModal(false)} className="kds-close-button">
           <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
         </div>
       </div>
-      <hr className="border-t border-[#D3DBDF] h-px" />
+      <hr className="kds-divider" />
 
       {
         selectedProduct?.productType === "3D" && (
-          <div className="bg-white p-3 rounded shadow-md space-y-2">
-            <label className="font-semibold block">Select Part:</label>
-            <div className="grid grid-cols-2 gap-2">
+          <div className="kds-3d-section">
+            <label className="kds-part-label">Select Part:</label>
+            <div className="kds-parts-grid">
               {parts.map((part) => (
                 <button
                   key={part}
                   onClick={() => setthreeDSelectedPart(part)}
-                  className={`px-2 py-1 rounded border ${threeDselectedPart === part ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+                  className={`kds-part-button ${threeDselectedPart === part ? 'active' : ''}`}
                 >
                   {part} 
                 </button>
               ))}
             </div>
 
-            <div className="mt-3">
-              <label className="block mb-1">Pick Color:</label>
+            <div className="kds-color-picker-section">
+              <label className="kds-color-picker-label">Pick Color:</label>
               <input
                 type="color"
                 value={threeDcolor}
                 onChange={(e) => setthreeDColor(e.target.value)}
+                className="kds-color-picker"
               />
             </div>
           </div>
@@ -199,13 +200,10 @@ const SelectColorsTab = () => {
       {
         selectedProduct?.productType === '2D' && (
           <>
-            <div className="flex border-b border-[#D3DBDF]">
+            <div className="kds-tab-navigation">
               <button
                 onClick={() => setActiveTab('background')}
-                className={`flex-1 py-2 px-3 text-sm font-medium transition-colors duration-200 ${activeTab === 'background'
-                  ? 'bg-blue-50 text-blue-600 border-b-2 border-blue-600'
-                  : 'text-gray-600 hover:text-gray-800'
-                  }`}
+                className={`kds-tab-button ${activeTab === 'background' ? 'active background' : ''}`}
               >
                 Background
               </button>
@@ -214,10 +212,7 @@ const SelectColorsTab = () => {
               {selectedProduct?.colors?.topColor && (
                 <button
                   onClick={() => setActiveTab('topColor')}
-                  className={`flex-1 py-2 px-3 text-sm font-medium transition-colors duration-200 ${activeTab === 'topColor'
-                    ? 'bg-red-50 text-red-600 border-b-2 border-red-600'
-                    : 'text-gray-600 hover:text-gray-800'
-                    }`}
+                  className={`kds-tab-button ${activeTab === 'topColor' ? 'active topColor' : ''}`}
                 >
                   Top Color
                 </button>
@@ -226,10 +221,7 @@ const SelectColorsTab = () => {
               {selectedProduct?.colors?.bottomColor && (
                 <button
                   onClick={() => setActiveTab('bottomColor')}
-                  className={`flex-1 py-2 px-3 text-sm font-medium transition-colors duration-200 ${activeTab === 'bottomColor'
-                    ? 'bg-green-50 text-green-600 border-b-2 border-green-600'
-                    : 'text-gray-600 hover:text-gray-800'
-                    }`}
+                  className={`kds-tab-button ${activeTab === 'bottomColor' ? 'active bottomColor' : ''}`}
                 >
                   Bottom Color
                 </button>
@@ -237,8 +229,8 @@ const SelectColorsTab = () => {
             </div>
 
             {/* Color Grid */}
-            <div className='max-h-[320px] overflow-y-auto'>
-              <div className='flex flex-col gap-3 py-3 px-3'>
+            <div className='kds-colors-container'>
+              <div className='kds-colors-list'>
                 {currentColors.map((colorObj, index) => {
                   const isSelected = currentSelected && (
                     (activeTab === 'background' && currentSelected.color === colorObj.color) ||
@@ -249,14 +241,13 @@ const SelectColorsTab = () => {
                     <div
                       key={`${activeTab}-${index}`}
                       onClick={() => handleColorSelect(colorObj, activeTab)}
-                      className={`flex relative items-center p-2 rounded-md cursor-pointer gap-4 transition-all duration-200 hover:bg-gray-50 ${isSelected ? "border border-blue-400 bg-blue-50" : "border border-transparent"
-                        }`}
+                      className={`kds-color-item ${isSelected ? "selected" : ""}`}
                     >
                       {renderColorPreview(colorObj, activeTab)}
 
-                      <div className='flex flex-col'>
-                        <p className='text-[16px] text-black font-medium'>{colorObj.name}</p>
-                        <span className='text-gray-500 text-[14px]'>
+                      <div className='kds-color-info'>
+                        <p className='kds-color-name'>{colorObj.name}</p>
+                        <span className='kds-color-description'>
                           {activeTab === 'background' ? '8 sizes in stock' : 'Gradient effect'}
                         </span>
                       </div>
@@ -265,7 +256,7 @@ const SelectColorsTab = () => {
                         <img
                           src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1750146342/check-circle_1_lry4rw.svg"
                           alt="Selected"
-                          className='absolute right-1.5 top-4'
+                          className='kds-selected-icon'
                         />
                       )}
                     </div>
@@ -275,7 +266,7 @@ const SelectColorsTab = () => {
             </div>
 
             {/* Info Footer */}
-            <div className="px-3 py-2 bg-gray-50 text-xs text-gray-600">
+            <div className="kds-info-footer">
               {activeTab === 'background' && "Background colors change the base canvas color"}
               {activeTab === 'topColor' && "Top colors create gradient effects on the upper part"}
               {activeTab === 'bottomColor' && "Bottom colors create gradient effects on the lower part"}

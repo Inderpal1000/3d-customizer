@@ -1,0 +1,67 @@
+/* FontSelector Component Styles */
+
+.kds-fontselector-container {
+  background-color: #ffffff;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #D3DBDF;
+  width: 20rem; /* w-80 */
+  height: fit-content; /* h-fit */
+  max-height: 460px; /* max-h-[460px] */
+  overflow-y: auto; /* overflow-y-scroll */
+}
+
+.kds-fontselector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+}
+
+.kds-fontselector-title {
+  font-size: 16px; /* text-[16px] */
+  color: #000000; /* text-black */
+  font-weight: 600; /* font-semibold */
+}
+
+.kds-fontselector-close {
+  cursor: pointer;
+}
+
+.kds-fontselector-divider {
+  border-top: 1px solid #D3DBDF;
+  height: 1px; /* h-px */
+}
+
+.kds-fontselector-content {
+  padding: 0.75rem; /* p-3 */
+  display: flex;
+  flex-direction: column; /* flex-col */
+  gap: 1rem; /* gap-4 */
+}
+
+.kds-fontselector-item {
+  padding: 0 0.75rem; /* px-3 */
+  cursor: pointer;
+}
+
+.kds-fontselector-font {
+  color: #000000; /* text-black */
+  font-size: 14px; /* text-[14px] */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kds-fontselector-container {
+    width: calc(100vw - 2rem);
+    max-width: 20rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kds-fontselector-container {
+    width: calc(100vw - 1rem);
+  }
+  .kds-fontselector-content {
+    padding: 0.5rem;
+  }
+}

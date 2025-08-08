@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./CustomColorSwatch.css";
 
 const colorOptions = [
     "#000000", "#434343", "#666666", "#999999", "#b7b7b7", "#cccccc", "#e6e6e6", "#f3f3f3", "#dbebe6",
@@ -17,39 +18,39 @@ export default function CustomColorSwatch({setTextColor, setChangeTextColor, sel
     };
 
     return (
-        <div className="bg-white rounded-lg border border-[#D3DBDF] w-72 h-fit max-h-[460px] overflow-y-scroll">
+        <div className="kds-color-container">
             
-            <div className='flex items-center justify-between py-2 px-3'>
-                <div className='flex items-center gap-2'>
-                    <h3 className='text-[16px] text-black font-semibold'>Choose Color</h3>
+            <div className='kds-color-header'>
+                <div className='kds-color-title-section'>
+                    <h3 className='kds-color-title'>Choose Color</h3>
                 </div>
-                <div className="cursor-pointer" onClick={() => setShowColorTab(false)}>
+                <div className="kds-color-close" onClick={() => setShowColorTab(false)}>
                     <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
                 </div>
             </div>
-            <hr className="border-t border-[#D3DBDF] h-px" />
+            <hr className="kds-color-divider" />
             
-            <div className="p-3 flex flex-col gap-2">
-                <div>
-                    <h3 className="text-[12px] text-black font-semibold">USED IN YOUR DESIGN</h3>
-                    <div className="mb-4 flex items-center gap-2 mt-2">
+            <div className="kds-color-content">
+                <div className="kds-used-colors-section">
+                    <h3>USED IN YOUR DESIGN</h3>
+                    <div className="kds-used-color-display">
                         <div 
-                            className={`w-6 h-6 rounded-full cursor-pointer border-2 transition-all duration-150`} 
+                            className="kds-used-color-swatch" 
                             style={{ backgroundColor: setTextColor }} 
                             onClick={() => handleColorClick(setTextColor)}
                         />
-                        <span className="text-sm">{setTextColor}</span>
+                        <span className="kds-used-color-text">{setTextColor}</span>
                     </div>
                 </div>
                 
-                <div>
-                    <h3 className="text-[12px] font-semibold text-black">ALL COLORS</h3>
-                    <div className="grid grid-cols-6 items-center gap-2 mt-2">
+                <div className="kds-all-colors-section">
+                    <h3>ALL COLORS</h3>
+                    <div className="kds-color-grid">
                         {colorOptions.map((color) => (
                             <div
                                 key={color}
-                                className={`w-6 h-6 rounded-full cursor-pointer border-2 transition-all duration-150 ${
-                                    selectedColor === color ? "border-black scale-110" : "border-transparent"
+                                className={`kds-color-swatch ${
+                                    selectedColor === color ? "kds-selected" : "kds-unselected"
                                 }`}
                                 style={{ backgroundColor: color }}
                                 onClick={() => handleColorClick(color)}

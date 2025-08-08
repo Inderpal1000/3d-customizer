@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect } from "react";
+import './FontSelector.css';
 
 const families = [
   "Roboto", "Open Sans", "Lato", "Montserrat", "Poppins", "Source Sans Pro",
@@ -36,19 +37,19 @@ const FontSelector = ({ setSelectedFont, selectedFont, setShowTextSelectTab }) =
   };
 
   return (
-    <div className="bg-white rounded-lg border border-[#D3DBDF] w-80 h-fit max-h-[460px] overflow-y-scroll">
-      <div className='flex items-center justify-between py-2 px-3'>
-        <h3 className='text-[16px] text-black font-semibold'>Typeface</h3>
-        <div className="cursor-pointer" onClick={() => setShowTextSelectTab(false)}>
+    <div className="kds-fontselector-container">
+      <div className='kds-fontselector-header'>
+        <h3 className='kds-fontselector-title'>Typeface</h3>
+        <div className="kds-fontselector-close" onClick={() => setShowTextSelectTab(false)}>
           <img src="https://res.cloudinary.com/dd9tagtiw/image/upload/v1749341803/Vector_hm0yzo.png" alt="Close" />
         </div>
       </div>
-      <hr className="border-t border-[#D3DBDF] h-px" />
+      <hr className="kds-fontselector-divider" />
       
-      <div className="p-3 flex flex-col gap-4">
+      <div className="kds-fontselector-content">
         {families.map((font) => (
-          <div key={font} className="px-3 cursor-pointer" onClick={() => handleFontClick(font)}>
-            <p className="text-black text-[14px]" style={{ fontFamily: font }}>
+          <div key={font} className="kds-fontselector-item" onClick={() => handleFontClick(font)}>
+            <p className="kds-fontselector-font" style={{ fontFamily: font }}>
               {font}
             </p>
           </div>
